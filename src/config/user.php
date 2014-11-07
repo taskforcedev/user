@@ -28,7 +28,8 @@ return array(
     */
 
     'views' => array(
-        'layout' => '',
+        'layout' => 'layouts/master',
+        'section' => 'content'
     ),
 
     'registration_fields' => array(

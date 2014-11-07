@@ -9,10 +9,12 @@ class UserController extends \Controller
         // Get the fields from the config
         $fields = $this->getPageConfig('login');
         $layout = \Config::get('taskforcedev::user.views.layout');
+        $section = \Config::get('taskforcedev::user.views.section');
 
         $data = [
             'fields' => $fields,
             'layout' => $layout,
+            'section' => $section,
         ];
         return \View::make('taskforcedev::login', $data);
     }
@@ -22,12 +24,14 @@ class UserController extends \Controller
         // Get the fields from the config
         $fields = $this->getPageConfig('registration');
         $layout = \Config::get('taskforcedev::user.views.layout');
+        $section = \Config::get('taskforcedev::user.views.section');
 
         $data = [
             'fields' => $fields,
             'layout' => $layout,
+            'section' => $section,
         ];
-        return \View::make('taskforcedev::login', $data);
+        return \View::make('taskforcedev::register', $data);
     }
 
     public function getPageConfig($page)

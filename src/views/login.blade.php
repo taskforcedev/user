@@ -1,3 +1,7 @@
+@extends($layout)
+
+@section($section)
+
 {{ Form::open(array('url' => 'login')) }}
 
 @foreach ($fields as $field => $type)
@@ -13,3 +17,5 @@
 @endforeach
 
 {{ Form::close() }}
+
+@stop
