@@ -11,7 +11,7 @@
     @if ($type == 'text')
         {{ Form::text($field, null, array('class' => 'form-control', 'placeholder' => $field)) }}
     @elseif ($type == 'password')
-        {{ Form::password($field, null, array('class' => 'form-control', 'placeholder' => $field)) }}
+        {{ Form::password($field, array('class' => 'form-control', 'placeholder' => $field)) }}
     @endif
 
 @endforeach
