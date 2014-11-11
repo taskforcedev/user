@@ -62,7 +62,6 @@ return array(
         ),
         'profile' => array(
             'username' => 'text',
-            'email' => 'text',
             'password' => 'password',
         )
     )
