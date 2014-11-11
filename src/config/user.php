@@ -17,6 +17,10 @@ return array(
     */
     'auth_type' => 'profile',
 
+    // The page that the user is taken to after successful login
+
+    'default_page' => 'profile',
+
     /*
     |--------------------
     | Registration Fields
