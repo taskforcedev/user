@@ -16,6 +16,8 @@
 
 @endforeach
 
+{{ Form::submit('Login') }}
+
 {{ Form::close() }}
 
 @stop

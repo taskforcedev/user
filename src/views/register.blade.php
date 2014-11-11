@@ -16,6 +16,8 @@
 
 @endforeach
 
+{{ Form::submit('Register') }}
+
 {{ Form::close() }}
 
 @stop
