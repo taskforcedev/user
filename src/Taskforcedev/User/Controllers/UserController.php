@@ -43,7 +43,7 @@ class UserController extends \Controller
         $default_page = $this->getDefaultPage();
         if (Auth::attempt($data))
         {
-            return Redirect::intended($default_page);
+            return Redirect::intended($default_page)->with(['taskforce_user_message', 'You are now logged in.']);
         }
     }
 
@@ -90,8 +90,7 @@ class UserController extends \Controller
         $default_page = $this->getDefaultPage();
         if (Auth::attempt($data))
         {
-            \Session::flash('taskforce_user_message', 'You are now authenticated.');
-            return Redirect::intended($default_page);
+            return Redirect::intended($default_page)->with(['taskforce_user_message', 'You are now logged in.']);
         }
     }
 
