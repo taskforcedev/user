@@ -5,6 +5,7 @@ namespace Taskforcedev\User\controllers;
 use \Auth;
 use \Input;
 use \Redirect;
+use \Hash;
 
 class UserController extends \Controller
 {
