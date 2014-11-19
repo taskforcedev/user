@@ -47,6 +47,11 @@ class UserController extends \Controller
         }
     }
 
+    public function isDebugging()
+    {
+        return \Config::get('taskforcedev::user.views.layout');
+    }
+
     public function registerForm()
     {
         // Get the fields from the config
@@ -118,25 +123,25 @@ class UserController extends \Controller
             case 'email':
                 $data = [
                     'email' => Input::get('email'),
-                    'password' => Input::get('password')
+                    'password' => Hash::make(Input::get('password'))
                 ];
                 break;
             case 'username':
                 $data = [
                     'username' => Input::get('username'),
-                    'password' => Input::get('password')
+                    'password' => Hash::make(Input::get('password'))
                 ];
                 break;
             case 'profile':
                 $data = [
                     'username' => Input::get('username'),
-                    'password' => Input::get('password')
+                    'password' => Hash::make(Input::get('password'))
                 ];
                 break;
             default:
                 $data = [
                     'username' => Input::get('username'),
-                    'password' => Input::get('password')
+                    'password' => Hash::make(Input::get('password'))
                 ];
                 break;
         }
