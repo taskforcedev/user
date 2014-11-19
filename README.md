@@ -1,6 +1,6 @@
 Task Force Dev User Laravel Package
 ====
-![Travis Build](https://travis-ci.org/taskforcedev/user.svg?branch=master)
+![Travis Build](https://travis-ci.org/taskforcedev/user.svg?branch=master) [![Latest Stable Version](https://poser.pugx.org/taskforcedev/user/v/stable.svg)](https://packagist.org/packages/taskforcedev/user) [![Total Downloads](https://poser.pugx.org/taskforcedev/user/downloads.svg)](https://packagist.org/packages/taskforcedev/user) [![Latest Unstable Version](https://poser.pugx.org/taskforcedev/user/v/unstable.svg)](https://packagist.org/packages/taskforcedev/user) [![License](https://poser.pugx.org/taskforcedev/user/license.svg)](https://packagist.org/packages/taskforcedev/user)
 
 
 A laravel package providing routes, controller and views for user login/register, etc.
