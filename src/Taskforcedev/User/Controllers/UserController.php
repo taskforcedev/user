@@ -15,7 +15,7 @@ class UserController extends \Controller
         $layout = \Config::get('taskforcedev::user.views.layout');
         $section = \Config::get('taskforcedev::user.views.section');
 
-        $flash = $flash = Session::get('taskforce_user_message');
+        $flash = $flash = \Session::get('taskforce_user_message');
 
         $data = [
             'fields' => $fields,
@@ -54,7 +54,7 @@ class UserController extends \Controller
         $layout = \Config::get('taskforcedev::user.views.layout');
         $section = \Config::get('taskforcedev::user.views.section');
 
-        $flash = Session::get('taskforce_user_message');
+        $flash = \Session::get('taskforce_user_message');
 
         $data = [
             'fields' => $fields,
@@ -85,7 +85,7 @@ class UserController extends \Controller
         $default_page = $this->getDefaultPage();
         if (Auth::attempt($data))
         {
-            Session::flash('taskforce_user_message', 'You are now authenticated.');
+            \Session::flash('taskforce_user_message', 'You are now authenticated.');
             return Redirect::intended($default_page);
         }
     }
