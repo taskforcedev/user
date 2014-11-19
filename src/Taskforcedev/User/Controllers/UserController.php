@@ -44,7 +44,9 @@ class UserController extends \Controller
         $default_page = $this->getDefaultPage();
         if (Auth::attempt($data))
         {
-            return Redirect::intended($default_page)->with(['taskforce_user_message', 'You are now logged in.']);
+            $user = Auth::user();
+            $data = ['user' => $user];
+            return Redirect::intended($default_page, $data)->with(['taskforce_user_message', 'You are now logged in.']);
         }
     }
 
