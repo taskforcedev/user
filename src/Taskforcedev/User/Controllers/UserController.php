@@ -71,7 +71,7 @@ class UserController extends \Controller
 
         $data = $this->populateInput();
 
-        User::create($data);
+        \User::create($data);
 
         // Attempt to authenticate
         $default_page = $this->getDefaultPage();
