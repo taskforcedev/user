@@ -33,7 +33,7 @@ class UserController extends \Controller
             }
         }
 
-        $data = $this->populateInput
+        $data = $this->populateInput();
 
         // Attempt to authenticate
         $default_page = $this->getDefaultPage();
@@ -69,7 +69,7 @@ class UserController extends \Controller
             }
         }
 
-        $data = $this->populateInput
+        $data = $this->populateInput();
 
         // Attempt to authenticate
         $default_page = $this->getDefaultPage();
