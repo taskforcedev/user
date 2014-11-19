@@ -148,4 +148,11 @@ class UserController extends \Controller
 
         return $data;
     }
+
+    public function profile()
+    {
+        $user = Auth::user();
+
+        return View::make('taskforcedev::profile');
+    }
 }
