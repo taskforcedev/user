@@ -24,3 +24,7 @@ After this you should add the following service provider to your app/config/app.
 
 <code>'Taskforcedev\User\UserServiceProvider',</code>
 
+### Views ###
+The package comes with some default views however you can publish these to overwrite them using the following command
+
+<code>php artisan view:publish Taskforcedev/user</code>
