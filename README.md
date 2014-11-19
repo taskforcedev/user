@@ -1,5 +1,7 @@
 Task Force Dev User Laravel Package
 ====
+![Travis Build](https://travis-ci.org/taskforcedev/user.svg?branch=master)
+
 
 A laravel package providing routes, controller and views for user login/register, etc.
 
