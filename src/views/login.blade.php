@@ -2,6 +2,10 @@
 
 @section($section)
 
+@if(isset($flash))
+<div class="{{ $flash_type }}">{{ $flash }}</div>
+@endif
+
 {{ Form::open(array('url' => 'login')) }}
 
 @foreach ($fields as $field => $type)

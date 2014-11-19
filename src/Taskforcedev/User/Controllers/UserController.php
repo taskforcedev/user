@@ -21,7 +21,8 @@ class UserController extends \Controller
             'fields' => $fields,
             'layout' => $layout,
             'section' => $section,
-            'flash' => $flash
+            'flash' => $flash,
+            'flash_type' => 'error'
         ];
         return \View::make('taskforcedev::login', $data);
     }
@@ -59,7 +60,8 @@ class UserController extends \Controller
             'fields' => $fields,
             'layout' => $layout,
             'section' => $section,
-            'flash' => $flash
+            'flash' => $flash,
+            'flash_type' => 'error'
         ];
         return \View::make('taskforcedev::register', $data);
     }
