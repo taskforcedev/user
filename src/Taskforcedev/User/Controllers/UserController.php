@@ -84,6 +84,7 @@ class UserController extends \Controller
         }
 
         $data = $this->populateInput();
+        $data['password'] = Hash::make($data['password']);
 
         \User::create($data);
 
@@ -123,25 +124,25 @@ class UserController extends \Controller
             case 'email':
                 $data = [
                     'email' => Input::get('email'),
-                    'password' => Hash::make(Input::get('password'))
+                    'password' => Input::get('password')
                 ];
                 break;
             case 'username':
                 $data = [
                     'username' => Input::get('username'),
-                    'password' => Hash::make(Input::get('password'))
+                    'password' => Input::get('password')
                 ];
                 break;
             case 'profile':
                 $data = [
                     'username' => Input::get('username'),
-                    'password' => Hash::make(Input::get('password'))
+                    'password' => Input::get('password')
                 ];
                 break;
             default:
                 $data = [
                     'username' => Input::get('username'),
-                    'password' => Hash::make(Input::get('password'))
+                    'password' => Input::get('password')
                 ];
                 break;
         }
