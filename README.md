@@ -6,10 +6,24 @@ Task Force Development Studio
 ![Travis Build](https://travis-ci.org/taskforcedev/user.svg?branch=master) [![Latest Stable Version](https://poser.pugx.org/taskforcedev/user/v/stable.svg)](https://packagist.org/packages/taskforcedev/user) [![Total Downloads](https://poser.pugx.org/taskforcedev/user/downloads.svg)](https://packagist.org/packages/taskforcedev/user) [![Latest Unstable Version](https://poser.pugx.org/taskforcedev/user/v/unstable.svg)](https://packagist.org/packages/taskforcedev/user) [![License](https://poser.pugx.org/taskforcedev/user/license.svg)](https://packagist.org/packages/taskforcedev/user)
 
 
+### About ###
+
 A laravel package providing routes, controller and views for user login/register, etc.
 
 The package follows convention over configuration, examples of this are using the User model that ships with laravel, it is assumed you will create your own migrations etc for this.
 Also the convention assumes you have a views/layouts/master file which all the views provided by this package extend.  You can of course override these.
+
+
+What this package provides is an out-of-the-box authentication system built on top of the laravel model.
+
+Routes:
+
+    get   /login       shows the login form.
+    get   /register    shows the registration form.
+    post  /login       logs the user in.
+    post  /register    registers the user (creates their account).
+    get   /profile     the default page once the user is logged in.
+    get   /logout      logs the user out (takes them to the login page).
 
 ### Installation ###
 
