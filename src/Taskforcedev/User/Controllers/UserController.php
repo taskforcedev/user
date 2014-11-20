@@ -38,7 +38,7 @@ class UserController extends \Controller
         foreach ($fields as $field => $type) {
             if (!Input::has($field))
             {
-                Redirect::route('tfdev.login.form');
+                return \Redirect::route('tfdev.login.form');
             }
         }
 
@@ -48,7 +48,7 @@ class UserController extends \Controller
         $default_route = $this->getDefaultRoute();
         if (Auth::attempt($data))
         {
-            return Redirect::route($default_route);
+            return \Redirect::route($default_route);
         }
     }
 
@@ -91,7 +91,7 @@ class UserController extends \Controller
         foreach ($fields as $field => $type) {
             if (!Input::has($field))
             {
-                Redirect::route('tfdev.register.form');
+                return \Redirect::route('tfdev.register.form');
             }
         }
 
@@ -104,7 +104,7 @@ class UserController extends \Controller
         $default_route = $this->getDefaultRoute();
         if (Auth::attempt($data))
         {
-            return Redirect::route($default_route);
+            return \Redirect::route($default_route);
         }
     }
 
@@ -168,6 +168,6 @@ class UserController extends \Controller
         $data = [
             'user' => $user
         ];
-        return View::make('taskforcedev::profile', $data);
+        return \View::make('taskforcedev::profile', $data);
     }
 }
