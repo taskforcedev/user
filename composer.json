@@ -1,6 +1,6 @@
 {
     "name": "taskforcedev/user",
-    "description": "",
+    "description": "A laravel package providing routes, controller and views for user login/register, etc.",
     "authors": [
         {
             "name": "taskforcedev",

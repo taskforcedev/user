@@ -64,4 +64,5 @@ The package comes with some default views however you can publish these to overw
 ### Common Problems ###
 ####Illuminate \ Database \ Eloquent \ MassAssignmentException  username #####
 For this you need to add the following to your App/Models/User.php
+
 <code>protected $fillable = ['username', 'password'];</code>
