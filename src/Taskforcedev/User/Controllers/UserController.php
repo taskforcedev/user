@@ -28,13 +28,17 @@ class UserController extends \Controller
         return \View::make('taskforcedev::login', $data);
     }
 
+    /**
+     * Login functionality (POST)
+     * @return mixed
+     */
     public function login()
     {
         $fields = $this->getPageConfig('login');
         foreach ($fields as $field => $type) {
             if (!Input::has($field))
             {
-                Redirect::to('login');
+                Redirect::route('tfdev.login.form');
             }
         }
 
@@ -44,7 +48,7 @@ class UserController extends \Controller
         $default_route = $this->getDefaultRotue();
         if (Auth::attempt($data))
         {
-            return Redirect::to($default_route);
+            return Redirect::route($default_route);
         }
     }
 
@@ -53,6 +57,10 @@ class UserController extends \Controller
         return \Config::get('taskforcedev::user.views.layout');
     }
 
+    /**
+     * Registration Form (GET)
+     * @return mixed
+     */
     public function registerForm()
     {
         // Get the fields from the config
@@ -72,6 +80,10 @@ class UserController extends \Controller
         return \View::make('taskforcedev::register', $data);
     }
 
+    /**
+     * Registration (POST)
+     * @return mixed
+     */
     public function registration()
     {
         $fields = $this->getPageConfig('registration');
@@ -79,7 +91,7 @@ class UserController extends \Controller
         foreach ($fields as $field => $type) {
             if (!Input::has($field))
             {
-                Redirect::to('register');
+                Redirect::route('tfdev.register.form');
             }
         }
 
@@ -92,7 +104,7 @@ class UserController extends \Controller
         $default_route = $this->getDefaultRoute();
         if (Auth::attempt($data))
         {
-            return Redirect::to($default_route);
+            return Redirect::route($default_route);
         }
     }
 
