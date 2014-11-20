@@ -96,7 +96,6 @@ class UserController extends \Controller
         }
 
         $data = $this->populateInput();
-        $data['password'] = Hash::make($data['password']);
 
         $user = \User::create($data);
 
