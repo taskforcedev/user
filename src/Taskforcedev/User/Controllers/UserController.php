@@ -97,7 +97,9 @@ class UserController extends \Controller
 
         $data = $this->populateInput();
 
-        $user = \User::create($data);
+        $newdata = $data;
+        $newdata['password'] = Hash::make($data['password']);
+        $user = \User::create($newdata);
 
         // Attempt to authenticate
 
