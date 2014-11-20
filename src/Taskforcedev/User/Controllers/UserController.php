@@ -102,7 +102,7 @@ class UserController extends \Controller
 
         // Attempt to authenticate
 
-        if (Auth::login($user))
+        if (Auth::attempt($data))
         {
             $default_route = $this->getDefaultRoute();
             return \Redirect::route($default_route);
