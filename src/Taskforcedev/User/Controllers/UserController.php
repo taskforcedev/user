@@ -52,6 +52,16 @@ class UserController extends \Controller
         }
     }
 
+    /**
+     * Login functionality (GET)
+     * @return mixed
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return \Redirect::route('tfdev.login.form');
+    }
+
     public function isDebugging()
     {
         return \Config::get('taskforcedev::user.views.layout');
