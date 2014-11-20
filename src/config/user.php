@@ -19,7 +19,7 @@ return array(
 
     // The page that the user is taken to after successful login
 
-    'default_action' => 'UserController@profile',
+    'default_action' => 'Taskforcedev\User\controllers\UserController@profile',
 
     /*
     |--------------------

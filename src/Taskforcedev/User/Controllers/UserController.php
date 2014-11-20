@@ -41,10 +41,10 @@ class UserController extends \Controller
         $data = $this->populateInput();
 
         // Attempt to authenticate
-        $default_action = $this->getDefaultAction();
+        $default_route = $this->getDefaultRotue();
         if (Auth::attempt($data))
         {
-            return Redirect::action($default_action);
+            return Redirect::to($default_route);
         }
     }
 
@@ -89,10 +89,10 @@ class UserController extends \Controller
         \User::create($data);
 
         // Attempt to authenticate
-        $default_action = $this->getDefaultAction();
+        $default_route = $this->getDefaultRoute();
         if (Auth::attempt($data))
         {
-            return Redirect::action($default_action);
+            return Redirect::action($default_route);
         }
     }
 
@@ -111,10 +111,10 @@ class UserController extends \Controller
         return $config['auth_type'];
     }
 
-    public function getDefaultAction()
+    public function getDefaultRoute()
     {
         $config = \Config::get('taskforcedev::user');
-        return $config['default_action'];
+        return $config['default_route'];
     }
 
 
