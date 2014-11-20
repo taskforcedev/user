@@ -44,7 +44,7 @@ class UserController extends \Controller
         $default_action = $this->getDefaultAction();
         if (Auth::attempt($data))
         {
-            return Redirect::intended($default_action);
+            return Redirect::action($default_action);
         }
     }
 
@@ -92,7 +92,7 @@ class UserController extends \Controller
         $default_action = $this->getDefaultAction();
         if (Auth::attempt($data))
         {
-            return Redirect::intended($default_action);
+            return Redirect::action($default_action);
         }
     }
 
