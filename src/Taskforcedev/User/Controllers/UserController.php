@@ -98,13 +98,16 @@ class UserController extends \Controller
         $data = $this->populateInput();
         $data['password'] = Hash::make($data['password']);
 
-        \User::create($data);
+        $user = \User::create($data);
 
         // Attempt to authenticate
-        $default_route = $this->getDefaultRoute();
-        if (Auth::attempt($data))
+
+        if (Auth::attempt($user))
         {
+            $default_route = $this->getDefaultRoute();
             return \Redirect::route($default_route);
+        } else {
+            return \Redirect::route('tfdev.register.form');
         }
     }
 
