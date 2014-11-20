@@ -97,9 +97,7 @@ class UserController extends \Controller
 
         $data = $this->populateInput();
 
-        $newdata = $data;
-        $newdata['password'] = Hash::make($data['password']);
-        $user = \User::create($newdata);
+        $this->createUser($data);
 
         // Attempt to authenticate
 
@@ -110,6 +108,14 @@ class UserController extends \Controller
         } else {
             return \Redirect::route('tfdev.register.form');
         }
+    }
+
+    public function createUser($data)
+    {
+        $newdata = $data;
+        $newdata['password'] = Hash::make($data['password']);
+        $user = \User::create($newdata);
+        return $user;
     }
 
     public function getPageConfig($page)
