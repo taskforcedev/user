@@ -41,12 +41,10 @@ class UserController extends \Controller
         $data = $this->populateInput();
 
         // Attempt to authenticate
-        $default_page = $this->getDefaultPage();
+        $default_action = $this->getDefaultAction();
         if (Auth::attempt($data))
         {
-            $user = Auth::user();
-            $data = ['user' => $user];
-            return Redirect::intended($default_page, $data)->with(['taskforce_user_message', 'You are now logged in.']);
+            return Redirect::intended($default_action);
         }
     }
 
@@ -91,10 +89,10 @@ class UserController extends \Controller
         \User::create($data);
 
         // Attempt to authenticate
-        $default_page = $this->getDefaultPage();
+        $default_action = $this->getDefaultAction();
         if (Auth::attempt($data))
         {
-            return Redirect::intended($default_page)->with(['taskforce_user_message', 'You are now logged in.']);
+            return Redirect::intended($default_action);
         }
     }
 
@@ -113,10 +111,10 @@ class UserController extends \Controller
         return $config['auth_type'];
     }
 
-    public function getDefaultPage()
+    public function getDefaultAction()
     {
         $config = \Config::get('taskforcedev::user');
-        return $config['default_page'];
+        return $config['default_action'];
     }
 
 
@@ -155,7 +153,9 @@ class UserController extends \Controller
     public function profile()
     {
         $user = Auth::user();
-
-        return View::make('taskforcedev::profile');
+        $data = [
+            'user' => $user
+        ];
+        return View::make('taskforcedev::profile', $data);
     }
 }

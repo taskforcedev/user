@@ -18,7 +18,7 @@ To install the package add the following line to your composer.json
 }
 </code>
 
-After doing this you should dump autoload preferably using artisan
+After doing this you should run composer update, then a dump autoload preferably using artisan
 
 <code>php artisan dump-autoload</code>
 
@@ -31,7 +31,7 @@ After this you should add the following service provider to your app/config/app.
 
 
 ### Overwriting Config ###
-The package comes with default config however you can publish this to overwrite with your own
+The package comes with default config however you will likely wish to publish this and overwrite with your own config settings.
 
 <code>php artisan config:publish Taskforcedev/user</code>
 
@@ -40,3 +40,11 @@ The package comes with default config however you can publish this to overwrite 
 The package comes with some default views however you can publish these to overwrite them using the following command
 
 <code>php artisan view:publish Taskforcedev/user</code>
+
+
+
+
+### Common Problems ###
+####Illuminate \ Database \ Eloquent \ MassAssignmentException  username #####
+For this you need to add the following to your App/Models/User.php
+<code>protected $fillable = ['username', 'password'];</code>
