@@ -92,7 +92,7 @@ class UserController extends \Controller
         $default_route = $this->getDefaultRoute();
         if (Auth::attempt($data))
         {
-            return Redirect::action($default_route);
+            return Redirect::to($default_route);
         }
     }
 
@@ -111,7 +111,7 @@ class UserController extends \Controller
         return $config['auth_type'];
     }
 
-    public function getDefaultRoute()
+    private function getDefaultRoute()
     {
         $config = \Config::get('taskforcedev::user');
         return $config['default_route'];
