@@ -1,1 +1,1 @@
-Welcome {{ $username }}
+Welcome {{ $user->username }}

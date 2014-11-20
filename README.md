@@ -8,6 +8,9 @@ Task Force Development Studio
 
 A laravel package providing routes, controller and views for user login/register, etc.
 
+The package follows convention over configuration, examples of this are using the User model that ships with laravel, it is assumed you will create your own migrations etc for this.
+Also the convention assumes you have a views/layouts/master file which all the views provided by this package extend.  You can of course override these.
+
 ### Installation ###
 
 To install the package add the following line to your composer.json
