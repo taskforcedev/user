@@ -40,20 +40,20 @@ After doing this you should run composer update, then a dump autoload preferably
 <code>php artisan dump-autoload</code>
 
 
-### Service Provider ###
+#### Service Provider ####
 
 After this you should add the following service provider to your app/config/app.php
 
 <code>'Taskforcedev\User\UserServiceProvider',</code>
 
 
-### Overwriting Config ###
+#### Overwriting Config ####
 The package comes with default config however you will likely wish to publish this and overwrite with your own config settings.
 
 <code>php artisan config:publish Taskforcedev/user</code>
 
 
-### Views ###
+#### Views ####
 The package comes with some default views however you can publish these to overwrite them using the following command
 
 <code>php artisan view:publish Taskforcedev/user</code>
