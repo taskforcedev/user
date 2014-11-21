@@ -32,7 +32,7 @@ return array(
     */
 
     'views' => array(
-        'layout' => 'layouts/master',
+        'layout' => 'taskforcedev::layouts/master',
         'section' => 'content'
     ),
 

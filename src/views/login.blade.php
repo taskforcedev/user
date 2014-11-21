@@ -8,6 +8,8 @@
 
 {{ Form::open(array('url' => 'login')) }}
 
+<h1>Login</h1>
+
 @foreach ($fields as $field => $type)
     <?php $field_display = ucwords($field); ?>
     {{ Form::label($field, $field_display, array('class' => 'label')) }}
@@ -19,7 +21,7 @@
     @endif
 
 @endforeach
-
+<br/>
 {{ Form::submit('Login') }}
 
 {{ Form::close() }}
