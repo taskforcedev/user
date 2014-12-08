@@ -191,4 +191,14 @@ class UserController extends \Controller
         ];
         return \View::make('taskforcedev::profile', $data);
     }
+    
+    public function getDefaultLayout()
+    {
+        return \Config::get('taskforcedev::user.views.layout');
+    }
+
+    public function getDefaultSection()
+    {
+        return \Config::get('taskforcedev::user.views.section');
+    }
 }
