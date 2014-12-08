@@ -168,6 +168,7 @@ class UserController extends \Controller
             case 'profile':
                 $data = [
                     'username' => Input::get('username'),
+                    'email' => Input::get('email'),
                     'password' => Input::get('password')
                 ];
                 break;
