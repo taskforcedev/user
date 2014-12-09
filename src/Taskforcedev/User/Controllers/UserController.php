@@ -148,7 +148,7 @@ class UserController extends \Controller
     }
 
 
-    public function populateInput()
+    public function populateInput($page = null)
     {
         switch ($this->getAuthType()) {
             case 'email':
@@ -164,11 +164,18 @@ class UserController extends \Controller
                 ];
                 break;
             case 'profile':
-                $data = [
-                    'username' => Input::get('username'),
-                    'email' => Input::get('email'),
-                    'password' => Input::get('password')
-                ];
+                if ($page == null) {
+                    $data = [
+                        'username' => Input::get('username'),
+                        'email' => Input::get('email'),
+                        'password' => Input::get('password')
+                    ];
+                } elseif ($page == 'login') {
+                    $data = [
+                        'username' => Input::get('username'),
+                        'password' => Input::get('password')
+                    ];
+                }
                 break;
             default:
                 $data = [
