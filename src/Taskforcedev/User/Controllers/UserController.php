@@ -13,15 +13,13 @@ class UserController extends \Controller
     {
         /* Config */
         $fields = $this->getPageConfig('login');
-        $layout = \Config::get('taskforcedev::user.views.layout');
-        $section = \Config::get('taskforcedev::user.views.section');
 
         $flash = $flash = \Session::get('taskforce_user_message');
 
         $data = [
             'fields' => $fields,
-            'layout' => $layout,
-            'section' => $section,
+            'layout' => $this->getDefaultLayout(),
+            'section' => $this->getDefaultSection(),
             'flash' => $flash,
             'flash_type' => 'error'
         ];
@@ -75,15 +73,13 @@ class UserController extends \Controller
     {
         // Get the fields from the config
         $fields = $this->getPageConfig('registration');
-        $layout = \Config::get('taskforcedev::user.views.layout');
-        $section = \Config::get('taskforcedev::user.views.section');
 
         $flash = \Session::get('taskforce_user_message');
 
         $data = [
             'fields' => $fields,
-            'layout' => $layout,
-            'section' => $section,
+            'layout' => $this->getDefaultLayout(),
+            'section' => $this->getDefaultSection(),
             'flash' => $flash,
             'flash_type' => 'error'
         ];
@@ -187,7 +183,9 @@ class UserController extends \Controller
     {
         $user = Auth::user();
         $data = [
-            'user' => $user
+            'user' => $user,
+            'layout' => $this->getDefaultLayout(),
+            'section' => $this->getDefaultSection()
         ];
         return \View::make('taskforcedev::profile', $data);
     }
