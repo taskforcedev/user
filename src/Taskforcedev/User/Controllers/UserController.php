@@ -40,7 +40,7 @@ class UserController extends \Controller
             }
         }
 
-        $data = $this->populateInput();
+        $data = $this->populateInput('login');
 
         // Attempt to authenticate
         $default_route = $this->getDefaultRoute();
