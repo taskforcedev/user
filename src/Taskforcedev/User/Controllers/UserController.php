@@ -47,6 +47,8 @@ class UserController extends \Controller
         if (Auth::attempt($data))
         {
             return \Redirect::route($default_route);
+        } else {
+            return \Redirect::route('tfdev.login.form');
         }
     }
 
