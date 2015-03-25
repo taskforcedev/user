@@ -1,7 +1,8 @@
 User Laravel Package
 ====
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/taskforcedev/user?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Deprecated: Since Laravel 5 includes user authentication routes and views, this package will no longer be developed.
+
 Task Force Development Studio
 ----
 
