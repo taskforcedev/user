@@ -1,23 +1,16 @@
-User Laravel Package
+User Package
 ====
-
-Deprecated: Since Laravel 5 includes user authentication routes and views, this package will no longer be developed.
-
-Task Force Development Studio
-----
+A package for Laravel 5 (4 branch also available) which provides routes, views and controllers for authentication including register, login, logout and home.
 
 ![Travis Build](https://travis-ci.org/taskforcedev/user.svg?branch=master) [![Latest Stable Version](https://poser.pugx.org/taskforcedev/user/v/stable.svg)](https://packagist.org/packages/taskforcedev/user) [![Total Downloads](https://poser.pugx.org/taskforcedev/user/downloads.svg)](https://packagist.org/packages/taskforcedev/user) [![Latest Unstable Version](https://poser.pugx.org/taskforcedev/user/v/unstable.svg)](https://packagist.org/packages/taskforcedev/user) [![License](https://poser.pugx.org/taskforcedev/user/license.svg)](https://packagist.org/packages/taskforcedev/user)
 
-
 ### About ###
 
-A laravel package providing routes, controller and views for user login/register, etc.
+A Laravel package providing routes, controller and views for user login/register, etc.
 
 The package follows convention over configuration, examples of this are using the User model that ships with laravel, it is assumed you will create your own migrations etc for this.
-Also the convention assumes you have a views/layouts/master file which all the views provided by this package extend.  You can of course override these.
 
-
-What this package provides is an out-of-the-box authentication system built on top of the laravel model.
+What this package provides is an out-of-the-box authentication system built on top of the Laravel model.
 
 Routes:
 
@@ -25,7 +18,7 @@ Routes:
     get   /register    shows the registration form.
     post  /login       logs the user in.
     post  /register    registers the user (creates their account).
-    get   /profile     the default page once the user is logged in.
+    get   /user        the default page once the user is logged in.
     get   /logout      logs the user out (takes them to the login page).
 
 ### Installation ###
@@ -34,7 +27,7 @@ To install the package add the following line to your composer.json
 
 <code>
 "require": {
-    "taskforcedev/user": "dev-master"
+    "taskforcedev/user": "5.*"
 }
 </code>
 
@@ -45,10 +38,9 @@ After doing this you should run composer update, then a dump autoload preferably
 
 #### Service Provider ####
 
-After this you should add the following service provider to your app/config/app.php
+After this you should add the following service provider to your config/app.php
 
-<code>'Taskforcedev\User\UserServiceProvider',</code>
-
+<code>Taskforcedev\User\ServiceProvider::class,</code>
 
 #### Overwriting Config ####
 The package comes with default config however you will likely wish to publish this and overwrite with your own config settings.
@@ -61,10 +53,8 @@ The package comes with some default views however you can publish these to overw
 
 <code>php artisan view:publish Taskforcedev/user</code>
 
-
-
-
 ### Common Problems ###
+
 ####Illuminate \ Database \ Eloquent \ MassAssignmentException  username #####
 For this you need to add the following to your App/Models/User.php
 
