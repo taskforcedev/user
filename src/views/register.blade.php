@@ -1,29 +1,35 @@
 @extends($layout)
 
-@section($section)
+@section('content')
 
 @if(isset($flash))
 <div class="{{ $flash_type }}">{{ $flash }}</div>
 @endif
 
-{{ Form::open(array('url' => 'register')) }}
+<form action="{{ route('laravel-user.registration') }}" method="POST">
 
 <h1>Register</h1>
 
 @foreach ($fields as $field => $type)
-    <?php $field_display = ucwords($field); ?>
-    {{ Form::label($field, $field_display, array('class' => 'label')) }}
+    <?php
+        $field_display = str_replace('_', ' ', $field);
+        $field_display = ucwords($field_display);
+    ?>
+
+    <label class="label" for="{{ $field_display }}">{{ $field_display }}</label>
 
     @if ($type == 'text')
-        {{ Form::text($field, null, array('class' => 'form-control', 'placeholder' => $field)) }}
+        <input class="form-control" type="text" name="{{ $field }}" placeholder="{{ $field_display }}" />
     @elseif ($type == 'password')
-        {{ Form::password($field, array('class' => 'form-control', 'placeholder' => $field)) }}
+        <input class="form-control" type="password" name="{{ $field }}" placeholder="{{ $field_display }}" />
     @endif
+
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
 @endforeach
 <br/>
-{{ Form::submit('Register') }}
+<input type="submit" value="Register" />
 
-{{ Form::close() }}
+</form>
 
 @stop

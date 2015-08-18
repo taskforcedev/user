@@ -1,29 +1,25 @@
 <?php
 
-namespace Taskforcedev\User\controllers;
+namespace Taskforcedev\User\Http\Controllers;
 
 use \Auth;
+use \Config;
 use \Input;
 use \Redirect;
+use \Request;
 use \Hash;
 
-class UserController extends \Controller
+class UserController extends BaseController
 {
     public function loginForm()
     {
         /* Config */
-        $fields = $this->getPageConfig('login');
+        $data = $this->buildData();
+        $data['fields'] = $this->getLoginFields();
+        $data['flash'] = \Session::get('taskforce_user_message');
 
-        $flash = $flash = \Session::get('taskforce_user_message');
 
-        $data = [
-            'fields' => $fields,
-            'layout' => $this->getDefaultLayout(),
-            'section' => $this->getDefaultSection(),
-            'flash' => $flash,
-            'flash_type' => 'error'
-        ];
-        return \View::make('taskforcedev::login', $data);
+        return \View::make('laravel-user::login', $data);
     }
 
     /**
@@ -32,15 +28,18 @@ class UserController extends \Controller
      */
     public function login()
     {
-        $fields = $this->getPageConfig('login');
-        foreach ($fields as $field => $type) {
-            if (!Input::has($field))
-            {
-                return \Redirect::route('tfdev.login.form');
+        $fields = ['name', 'email', 'password'];
+        $data = Request::only('name', 'email', 'password');
+
+        /* If any field is null remove it from the array to enable authentication. */
+        foreach ($fields as $field) {
+            if (array_key_exists($field, $data)) {
+                $value = $data[$field];
+                if (!isset($value)) {
+                    unset($data[$field]);
+                }
             }
         }
-
-        $data = $this->populateInput('login');
 
         // Attempt to authenticate
         $default_route = $this->getDefaultRoute();
@@ -48,7 +47,7 @@ class UserController extends \Controller
         {
             return \Redirect::route($default_route);
         } else {
-            return \Redirect::route('tfdev.login.form');
+            return \Redirect::route('laravel-user.login.form');
         }
     }
 
@@ -59,12 +58,12 @@ class UserController extends \Controller
     public function logout()
     {
         Auth::logout();
-        return \Redirect::route('tfdev.login.form');
+        return \Redirect::route('laravel-user.login.form');
     }
 
     public function isDebugging()
     {
-        return \Config::get('taskforcedev::user.views.layout');
+        return config('laravel-user::user.views.layout');
     }
 
     /**
@@ -74,18 +73,15 @@ class UserController extends \Controller
     public function registerForm()
     {
         // Get the fields from the config
-        $fields = $this->getPageConfig('registration');
 
         $flash = \Session::get('taskforce_user_message');
 
-        $data = [
-            'fields' => $fields,
-            'layout' => $this->getDefaultLayout(),
-            'section' => $this->getDefaultSection(),
-            'flash' => $flash,
-            'flash_type' => 'error'
-        ];
-        return \View::make('taskforcedev::register', $data);
+        $data = $this->buildData();
+        $data['fields'] = $this->getRegistrationFields();
+        $data['flash'] = $flash;
+        $data['flash_type'] = 'error';
+
+        return view('laravel-user::register', $data);
     }
 
     /**
@@ -94,27 +90,16 @@ class UserController extends \Controller
      */
     public function registration()
     {
-        $fields = $this->getPageConfig('registration');
-
-        foreach ($fields as $field => $type) {
-            if (!Input::has($field))
-            {
-                return \Redirect::route('tfdev.register.form');
-            }
-        }
-
-        $data = $this->populateInput();
+        $data = Request::only(['name', 'password', 'confirm_password', 'email']);
 
         $this->createUser($data);
-
-        // Attempt to authenticate
 
         if (Auth::attempt($data))
         {
             $default_route = $this->getDefaultRoute();
-            return \Redirect::route($default_route);
+            return Redirect::route($default_route);
         } else {
-            return \Redirect::route('tfdev.register.form');
+            return Redirect::route('laravel-user.register.form');
         }
     }
 
@@ -122,90 +107,42 @@ class UserController extends \Controller
     {
         $newdata = $data;
         $newdata['password'] = Hash::make($data['password']);
-        $user = \User::create($newdata);
+        $model = $this->getUserModel();
+        $user = $model::create($newdata);
         return $user;
-    }
-
-    public function getPageConfig($page)
-    {
-        // get main config
-        $config = \Config::get('taskforcedev::user');
-        $auth_type = $this->getAuthType();
-        $fields = $config[$page . '_fields'][$auth_type];
-        return $fields;
-    }
-
-    public function getAuthType()
-    {
-        $config = \Config::get('taskforcedev::user');
-        return $config['auth_type'];
-    }
-
-    public function getDefaultRoute()
-    {
-        $config = \Config::get('taskforcedev::user');
-        return $config['default_route'];
-    }
-
-
-    public function populateInput($page = null)
-    {
-        switch ($this->getAuthType()) {
-            case 'email':
-                $data = [
-                    'email' => Input::get('email'),
-                    'password' => Input::get('password')
-                ];
-                break;
-            case 'username':
-                $data = [
-                    'username' => Input::get('username'),
-                    'password' => Input::get('password')
-                ];
-                break;
-            case 'profile':
-                if ($page == null) {
-                    $data = [
-                        'username' => Input::get('username'),
-                        'email' => Input::get('email'),
-                        'password' => Input::get('password')
-                    ];
-                } elseif ($page == 'login') {
-                    $data = [
-                        'username' => Input::get('username'),
-                        'password' => Input::get('password')
-                    ];
-                }
-                break;
-            default:
-                $data = [
-                    'username' => Input::get('username'),
-                    'password' => Input::get('password')
-                ];
-                break;
-        }
-
-        return $data;
     }
 
     public function profile()
     {
+        if (!Auth::check()) {
+            return Redirect::route('laravel-user.login');
+        }
+
         $user = Auth::user();
-        $data = [
-            'user' => $user,
-            'layout' => $this->getDefaultLayout(),
-            'section' => $this->getDefaultSection()
-        ];
-        return \View::make('taskforcedev::profile', $data);
-    }
-    
-    public function getDefaultLayout()
-    {
-        return \Config::get('taskforcedev::user.views.layout');
+        $data = $this->buildData();
+        $data['user'] = $user;
+        return view('laravel-user::profile', $data);
     }
 
-    public function getDefaultSection()
+    public function getAuthType()
     {
-        return \Config::get('taskforcedev::user.views.section');
+        return config('laravel-user.auth_type');
+    }
+
+    private function getRegistrationFields()
+    {
+        $type = $this->getAuthType();
+        return config('laravel-user.registration_fields.' . $type);
+    }
+
+    private function getLoginFields()
+    {
+        $type = $this->getAuthType();
+        return config('laravel-user.login_fields.' . $type);
+    }
+
+    public function getDefaultLayout()
+    {
+        return config('laravel-user::user.views.layout');
     }
 }

@@ -1,5 +1,5 @@
 @extends($layout)
 
-@section($section)
-Welcome {{ $user->username }}
+@section('content')
+Welcome {{ $user->name }}
 @stop

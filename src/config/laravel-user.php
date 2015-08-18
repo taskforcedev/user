@@ -19,7 +19,7 @@ return array(
 
     // The page that the user is taken to after successful login
 
-    'default_route' => 'tfdev.profile',
+    'default_route' => 'laravel-user.home',
 
     /*
     |--------------------
@@ -32,13 +32,12 @@ return array(
     */
 
     'views' => array(
-        'layout' => 'taskforcedev::layouts/master',
-        'section' => 'content'
+        'layout' => 'laravel-user::layouts.master',
     ),
 
     'registration_fields' => array(
         'username' => array(
-            'username' => 'text',
+            'name' => 'text',
             'password' => 'password',
             'confirm_password' => 'password',
         ),
@@ -48,7 +47,7 @@ return array(
             'confirm_password' => 'password',
         ),
         'profile' => array(
-            'username' => 'text',
+            'name' => 'text',
             'email' => 'text',
             'password' => 'password',
             'confirm_password' => 'password',
@@ -57,7 +56,7 @@ return array(
 
     'login_fields' => array(
         'username' => array(
-            'username' => 'text',
+            'name' => 'text',
             'password' => 'password',
         ),
         'email' => array(
@@ -65,7 +64,7 @@ return array(
             'password' => 'password',
         ),
         'profile' => array(
-            'username' => 'text',
+            'name' => 'text',
             'password' => 'password',
         )
     )
