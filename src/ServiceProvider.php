@@ -18,31 +18,36 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function boot()
     {
-        $this->package('taskforcedev/user');
-
-        include __DIR__.'/../../routes.php';
-
-        \Config::addNamespace('taskforcedev', __DIR__.'/../../config');
-        \View::addNamespace('taskforcedev', __DIR__.'/../../views');
+        $this->config();
+        $this->views();
+        $this->routes();
     }
 
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
+    private function config()
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/config/laravel-user.php',
+            'laravel-user'
+        );
+    }
+
+    private function views()
+    {
+        $this->loadViewsFrom(__DIR__.'/views', 'laravel-user');
+    }
+
+    private function routes()
+    {
+        require __DIR__ . '/Http/routes.php';
+    }
+
     public function register()
     {
         //
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
     public function provides()
     {
-        return array();
+        return [];
     }
 }
