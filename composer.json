@@ -13,9 +13,6 @@
         "laravel/framework": "5.*"
     },
     "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
         "psr-0": {
             "Taskforcedev\\User\\": "src/"
         }

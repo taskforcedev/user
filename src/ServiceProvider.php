@@ -1,8 +1,8 @@
 <?php namespace Taskforcedev\User;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
-class UserServiceProvider extends ServiceProvider
+class ServiceProvider extends IlluminateServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
