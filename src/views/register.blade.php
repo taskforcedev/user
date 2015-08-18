@@ -28,7 +28,7 @@
 
 @endforeach
 <br/>
-<input type="submit" value="Register" />
+<input type="submit" value="Register" class="btn btn-success" />
 
 </form>
 

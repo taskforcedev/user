@@ -25,10 +25,23 @@ class ServiceProvider extends IlluminateServiceProvider
 
     private function config()
     {
+        $this->publishes([
+            __DIR__.'/config/laravel-user.php' => config_path('laravel-user.php'),
+        ], 'config');
+
         $this->mergeConfigFrom(
             __DIR__.'/config/laravel-user.php',
             'laravel-user'
         );
+
+        // Merge overridden Config
+        $published = __DIR__.'/../../../../config/laravel-user.php';
+        if (file_exists($published)) {
+            $this->mergeConfigFrom(
+                $published,
+                'laravel-user'
+            );
+        }
     }
 
     private function views()

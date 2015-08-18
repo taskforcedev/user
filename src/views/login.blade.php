@@ -28,7 +28,7 @@
 
 @endforeach
 <br/>
-<input type="submit" value="Login" />
+<input type="submit" value="Login" class="btn btn-primary" />
 
 </form>
 

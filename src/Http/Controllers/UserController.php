@@ -13,6 +13,11 @@ class UserController extends BaseController
 {
     public function loginForm()
     {
+        $default_route = $this->getDefaultRoute();
+        if (Auth::check()) {
+            return redirect()->route($default_route);
+        }
+
         /* Config */
         $data = $this->buildData();
         $data['fields'] = $this->getLoginFields();
@@ -28,6 +33,8 @@ class UserController extends BaseController
      */
     public function login()
     {
+        $default_route = $this->getDefaultRoute();
+
         $fields = ['name', 'email', 'password'];
         $data = Request::only('name', 'email', 'password');
 
@@ -42,7 +49,6 @@ class UserController extends BaseController
         }
 
         // Attempt to authenticate
-        $default_route = $this->getDefaultRoute();
         if (Auth::attempt($data))
         {
             return \Redirect::route($default_route);
