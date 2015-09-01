@@ -27,7 +27,7 @@ class ServiceProvider extends IlluminateServiceProvider
     {
         $this->publishes([
             __DIR__.'/config/laravel-user.php' => config_path('laravel-user.php'),
-        ], 'config');
+        ], 'user-config');
 
         $this->mergeConfigFrom(
             __DIR__.'/config/laravel-user.php',
