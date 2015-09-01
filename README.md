@@ -45,13 +45,7 @@ After this you should add the following service provider to your config/app.php
 #### Overwriting Config ####
 The package comes with default config however you will likely wish to publish this and overwrite with your own config settings.
 
-<code>php artisan config:publish Taskforcedev/user</code>
-
-
-#### Views ####
-The package comes with some default views however you can publish these to overwrite them using the following command
-
-<code>php artisan view:publish Taskforcedev/user</code>
+<code>php artisan vendor:publish --tag="user-config"</code>
 
 ### Common Problems ###
 
