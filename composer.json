@@ -10,7 +10,8 @@
     "keywords": ["user", "routes", "views", "laravel", "login"],
     "require": {
         "php": ">=5.5.0",
-        "laravel/framework": "5.*"
+        "laravel/framework": "5.*",
+        "taskforcedev/laravel-support": "1.*"
     },
     "autoload": {
         "psr-4": {
