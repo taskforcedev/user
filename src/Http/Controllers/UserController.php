@@ -1,6 +1,4 @@
-<?php
-
-namespace Taskforcedev\User\Http\Controllers;
+<?php namespace Taskforcedev\User\Http\Controllers;
 
 use \Auth;
 use \Config;
@@ -8,8 +6,9 @@ use \Input;
 use \Redirect;
 use \Request;
 use \Hash;
+use Taskforcedev\LaravelSupport\Http\Controllers\Controller;
 
-class UserController extends BaseController
+class UserController extends Controller
 {
     public function loginForm()
     {
@@ -133,6 +132,11 @@ class UserController extends BaseController
     public function getAuthType()
     {
         return config('laravel-user.auth_type');
+    }
+
+    private function getDefaultRoute()
+    {
+        return config('laravel-user.default_route');
     }
 
     private function getRegistrationFields()
