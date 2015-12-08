@@ -42,6 +42,10 @@ After this you should add the following service provider to your config/app.php
 
 <code>Taskforcedev\User\ServiceProvider::class,</code>
 
+Also if not present please also add the following service provider.
+
+<code>Taskforcedev\LaravelSupport\ServiceProvider::class,</code>
+
 #### Overwriting Config ####
 The package comes with default config however you will likely wish to publish this and overwrite with your own config settings.
 
@@ -49,7 +53,7 @@ The package comes with default config however you will likely wish to publish th
 
 ### Common Problems ###
 
-####Illuminate \ Database \ Eloquent \ MassAssignmentException  username #####
+#### Illuminate \ Database \ Eloquent \ MassAssignmentException  username #####
 For this you need to add the following to your App/Models/User.php
 
 <code>protected $fillable = ['username', 'password'];</code>
