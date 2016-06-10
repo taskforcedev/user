@@ -50,9 +50,9 @@ class UserController extends Controller
         // Attempt to authenticate
         if (Auth::attempt($data))
         {
-            return \Redirect::route($default_route);
+            return redirect()->route($default_route);
         } else {
-            return \Redirect::route('laravel-user.login.form');
+            return redirect()->route('laravel-user.login.form');
         }
     }
 

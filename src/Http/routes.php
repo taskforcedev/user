@@ -1,15 +1,18 @@
 <?php
 
-Route::group(['namespace' => 'Taskforcedev\User\Http\Controllers'], function() {
-    /* Forms */
-    Route::get('login',     ['as' => 'laravel-user.login.form',    'uses' => 'UserController@loginForm']);
-    Route::get('register',  ['as' => 'laravel-user.register.form', 'uses' => 'UserController@registerForm']);
-    Route::get('user',      ['as' => 'laravel-user.home',          'uses'=> 'UserController@profile']);
+class RouteHelper
+{
+    use \Illuminate\Console\AppNamespaceDetectorTrait;
 
-    /* Logout */
-    Route::get('logout',    ['as' => 'laravel-user.logout',        'uses' => 'UserController@logout']);
+    public function getNamespace()
+    {
+        return $this->getAppNamespace();
+    }
+}
 
-    /* Actions */
-    Route::post('login',    ['as' => 'laravel-user.login',         'uses' => 'UserController@login']);
-    Route::post('register', ['as' => 'laravel-user.registration',  'uses' => 'UserController@registration']);
+Route::group([
+        'namespace' => (new RouteHelper)->getNamespace() . "Http\\Controllers",
+        'middleware' => 'web'
+    ], function() {
+    Route::auth();
 });
